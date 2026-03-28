@@ -1,61 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@300;400&display=swap');
 
 @import "tailwindcss";
 
 :root {
-  --bg: #080808;
-  --text: #F0EEE8;
-  --text-dim: rgba(240,238,232,0.45);
-  --text-muted: rgba(240,238,232,0.2);
-  --accent: #4F8EF7;
-  --accent-2: #C9A84C;
-  --border: rgba(240,238,232,0.08);
-  --border-strong: rgba(240,238,232,0.15);
+  --bg: #0C0C0E;
+  --bg-card: #131316;
+  --bg-card-hover: #18181C;
+  --text: #F2F1EE;
+  --text-dim: rgba(242,241,238,0.5);
+  --text-muted: rgba(242,241,238,0.25);
+  --border: rgba(242,241,238,0.07);
+  --border-hover: rgba(242,241,238,0.14);
+
+  --blue: #5B9EF4;
+  --blue-bg: rgba(91,158,244,0.08);
+  --gold: #C9A84C;
+  --gold-bg: rgba(201,168,76,0.08);
+  --green: #3ECF8E;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+.font-mono { font-family: 'DM Mono', monospace; }
+
+/* Project card */
+.proj-card {
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.proj-card:hover {
+  background: var(--bg-card-hover) !important;
+  transform: translateY(-2px);
 }
 
-.font-mono {
-  font-family: 'DM Mono', monospace;
-}
-
-/* Project row hover */
-.project-row {
-  transition: background 0.2s ease;
-  cursor: pointer;
-}
-.project-row:hover {
-  background: rgba(240,238,232,0.03);
-}
-.project-row:hover .project-arrow {
-  transform: translate(3px, -3px);
-  opacity: 1;
-}
-.project-arrow {
-  opacity: 0.4;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-.project-row:hover .project-number {
-  color: var(--accent);
-}
-.project-number {
-  transition: color 0.2s ease;
-}
-
+/* Blink */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
-.blink { animation: blink 1.2s step-start infinite; }
+.blink { animation: blink 1.4s step-start infinite; }
+
+/* Fade in */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.6s ease forwards; }
+.fade-up-2 { animation: fadeUp 0.6s 0.15s ease both; }
+.fade-up-3 { animation: fadeUp 0.6s 0.3s ease both; }

@@ -1,87 +1,93 @@
 'use client'
 
 interface Project {
-  id: string
   name: string
   name_zh: string
   desc: string
   tags: string[]
   href: string
   accent: string
-  glow: string
-  icon: string
+  accentBg: string
+  visual: string  // emoji / icon for visual placeholder
+  year: string
 }
 
-export function ProjectCard({ p }: { p: Project }) {
+export function ProjectCard({ p, delay }: { p: Project; delay: string }) {
   return (
     <a
       href={p.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="project-card block rounded-2xl p-6 group"
+      className="proj-card group block rounded-2xl overflow-hidden fade-up"
       style={{
         background: 'var(--bg-card)',
         border: '1px solid var(--border)',
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLElement
-        el.style.borderColor = p.accent + '40'
-        el.style.boxShadow = `0 8px 40px ${p.glow}`
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLElement
-        el.style.borderColor = 'var(--border)'
-        el.style.boxShadow = 'none'
+        animationDelay: delay,
       }}
     >
-      {/* Header */}
-      <div className="flex items-start justify-between mb-5">
-        <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold"
-          style={{ background: p.accent + '15', color: p.accent }}
+      {/* Visual area */}
+      <div
+        className="relative flex items-center justify-center h-48 sm:h-56"
+        style={{ background: p.accentBg }}
+      >
+        {/* Big decorative character */}
+        <span
+          className="text-8xl sm:text-9xl select-none opacity-20"
+          style={{ filter: `drop-shadow(0 0 40px ${p.accent})` }}
         >
-          {p.icon}
+          {p.visual}
+        </span>
+
+        {/* Top-right live badge */}
+        <div
+          className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+          style={{ background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(8px)' }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full blink" style={{ background: 'var(--green)' }} />
+          <span className="font-mono text-[10px] tracking-wider" style={{ color: 'var(--green)' }}>live</span>
         </div>
-        <div className="flex items-center gap-1.5 mt-1">
-          <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ background: 'var(--accent-green)' }} />
-          <span className="font-mono text-[9px] tracking-widest uppercase" style={{ color: 'var(--accent-green)' }}>
-            live
-          </span>
+
+        {/* Year */}
+        <div className="absolute bottom-4 left-4">
+          <span className="font-mono text-[10px]" style={{ color: p.accent, opacity: 0.8 }}>{p.year}</span>
         </div>
       </div>
 
-      {/* Name */}
-      <div className="mb-3">
-        <h2 className="text-lg font-semibold leading-snug" style={{ color: 'var(--text)' }}>
-          {p.name}
-        </h2>
-        <p className="font-mono text-xs mt-0.5" style={{ color: p.accent }}>
-          {p.name_zh}
-        </p>
-      </div>
-
-      {/* Desc */}
-      <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-dim)', fontWeight: 300 }}>
-        {p.desc}
-      </p>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5">
-        {p.tags.map(tag => (
+      {/* Content */}
+      <div className="p-6">
+        <div className="flex items-start justify-between mb-3">
+          <div>
+            <h2 className="text-lg font-semibold leading-snug" style={{ color: 'var(--text)' }}>
+              {p.name}
+            </h2>
+            <p className="text-sm mt-0.5 font-light" style={{ color: p.accent }}>
+              {p.name_zh}
+            </p>
+          </div>
           <span
-            key={tag}
-            className="font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 rounded-full"
-            style={{ background: p.accent + '10', color: p.accent, border: `1px solid ${p.accent}20` }}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
+            className="text-lg mt-0.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            style={{ color: 'var(--text-muted)' }}
+          >↗</span>
+        </div>
 
-      {/* Arrow */}
-      <div className="mt-5 flex items-center gap-1.5 text-xs font-medium" style={{ color: p.accent, opacity: 0.7 }}>
-        <span>访问项目</span>
-        <span className="transition-transform group-hover:translate-x-1">→</span>
+        <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-dim)', fontWeight: 300 }}>
+          {p.desc}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5">
+          {p.tags.map(tag => (
+            <span
+              key={tag}
+              className="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-md"
+              style={{
+                background: p.accentBg,
+                color: p.accent,
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     </a>
   )
