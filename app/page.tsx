@@ -1,99 +1,152 @@
-import { ProjectCard } from '@/components/ProjectCard'
-
-const PROJECTS = [
-  {
-    name: 'Stock Intel',
-    name_zh: '美股信号站',
-    year: '2025',
-    desc: '实时追踪 META · NFLX · NVDA · OXY 的 SEC 公告与内幕交易，把华尔街的信号流翻译成中文。',
-    tags: ['美股', 'SEC', '内幕交易', '实时'],
-    href: 'https://signals.robertji.com',
-    accent: 'var(--blue)',
-    accentBg: 'var(--blue-bg)',
-    visual: '◆',
-  },
-  {
-    name: 'Tarot Universe',
-    name_zh: '塔罗宇宙',
-    year: '2026',
-    desc: '22 张大阿尔卡那的三重宇宙——传统神秘学、当代艺术、游戏文化。一张牌，三种语言。',
-    tags: ['塔罗', '游戏', '艺术', '神秘学'],
-    href: 'https://tarot-universe.robertji.com',
-    accent: 'var(--gold)',
-    accentBg: 'var(--gold-bg)',
-    visual: '✦',
-  },
-]
-
 export default function Home() {
   return (
-    <main className="min-h-screen max-w-3xl mx-auto px-6">
+    <div className="min-h-screen" style={{ background: 'var(--bg)' }}>
 
-      {/* Nav */}
-      <nav className="flex items-center justify-between py-8">
-        <span className="font-mono text-[11px] tracking-[0.2em] uppercase" style={{ color: 'var(--text-muted)' }}>
+      {/* ── NAV ── */}
+      <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-8 h-14"
+        style={{ borderBottom: '1px solid var(--border)', background: 'rgba(10,10,10,0.85)', backdropFilter: 'blur(12px)' }}>
+        <span className="font-mono text-[11px] tracking-widest" style={{ color: 'var(--text-3)' }}>
           robertji.com
         </span>
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full blink" style={{ background: 'var(--green)' }} />
-          <span className="font-mono text-[11px]" style={{ color: 'var(--text-muted)' }}>司源 · online</span>
+          <span className="font-mono text-[11px]" style={{ color: 'var(--text-3)' }}>
+            司源 / online
+          </span>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="pt-16 pb-20 fade-up">
-        <p className="font-mono text-[11px] tracking-[0.35em] uppercase mb-6" style={{ color: 'var(--text-muted)' }}>
+      {/* ── HERO ── */}
+      <section className="pt-40 pb-28 px-8 max-w-4xl mx-auto">
+
+        {/* eyebrow */}
+        <p className="font-mono text-xs tracking-[0.25em] uppercase mb-8" style={{ color: 'var(--text-3)' }}>
           新产品孵化室
         </p>
-        <h1
-          className="text-5xl sm:text-6xl font-light leading-[1.05] mb-8"
-          style={{ letterSpacing: '-0.025em', color: 'var(--text)' }}
-        >
-          Experiments
+
+        {/* Headline — Syne, massive */}
+        <h1 className="font-display leading-[0.92] mb-10"
+          style={{ fontSize: 'clamp(4rem, 12vw, 9rem)', letterSpacing: '-0.03em', color: 'var(--text)' }}>
+          Build.
           <br />
-          <span style={{ color: 'var(--blue)' }}>worth</span> building.
+          <span style={{ color: 'var(--blue)' }}>Ship.</span>
+          <br />
+          Learn.
         </h1>
-        <p className="text-base font-light leading-relaxed max-w-sm" style={{ color: 'var(--text-dim)' }}>
-          我是司源，Robert Ji 的 AI 产品搭档。
-          <br />
-          这里是我们一起孵化的产品实验室。
+
+        <p className="text-base max-w-xs leading-relaxed" style={{ color: 'var(--text-2)', fontWeight: 300 }}>
+          Robert Ji 的产品实验室。<br />
+          由 AI 搭档司源全程参与。
         </p>
       </section>
 
-      {/* Divider */}
-      <div className="flex items-center gap-4 mb-8 fade-up-2">
-        <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
-        <span className="font-mono text-[10px] tracking-[0.35em] uppercase" style={{ color: 'var(--text-muted)' }}>
-          {PROJECTS.length} projects live
-        </span>
-        <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
-      </div>
+      {/* ── PROJECTS ── */}
+      <section className="px-8 max-w-4xl mx-auto pb-32">
 
-      {/* Project cards */}
-      <section className="grid sm:grid-cols-2 gap-4 pb-24 fade-up-3">
-        {PROJECTS.map((p, i) => (
-          <ProjectCard key={p.name} p={p} delay={`${i * 0.1}s`} />
-        ))}
+        {/* label */}
+        <div className="flex items-center gap-4 mb-0">
+          <span className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: 'var(--text-3)' }}>
+            Projects
+          </span>
+          <div className="h-px flex-1" style={{ background: 'var(--border)' }} />
+        </div>
+
+        {/* Project: Stock Intel */}
+        <a href="https://signals.robertji.com" target="_blank" rel="noopener noreferrer"
+          className="proj-item block group py-10 -mx-8 px-8 rounded-none"
+          style={{ borderBottom: '1px solid var(--border)' }}>
+          <div className="flex items-start justify-between gap-8">
+            <div className="flex-1 min-w-0">
+              {/* number + name row */}
+              <div className="flex items-baseline gap-5 mb-4">
+                <span className="font-mono text-xs" style={{ color: 'var(--text-3)' }}>01</span>
+                <div>
+                  <span className="font-display text-4xl sm:text-5xl font-bold leading-none"
+                    style={{ color: 'var(--text)', letterSpacing: '-0.02em' }}>
+                    Stock Intel
+                  </span>
+                  <span className="ml-4 text-base font-light" style={{ color: 'var(--blue)' }}>
+                    美股信号站
+                  </span>
+                </div>
+              </div>
+              <p className="text-sm leading-relaxed mb-5 max-w-md" style={{ color: 'var(--text-2)', fontWeight: 300 }}>
+                实时追踪 META · NFLX · NVDA · OXY 的 SEC 公告与内幕交易，把华尔街信号翻译成中文。
+              </p>
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--green)' }} />
+                  <span className="font-mono text-[10px]" style={{ color: 'var(--green)' }}>live</span>
+                </span>
+                <span className="font-mono text-[10px] tracking-wider" style={{ color: 'var(--text-3)' }}>2025</span>
+                {['美股', 'SEC', '内幕交易'].map(t => (
+                  <span key={t} className="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded"
+                    style={{ background: 'rgba(77,156,255,0.08)', color: 'var(--blue)' }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <span className="proj-arrow font-light text-2xl mt-1 shrink-0" style={{ color: 'var(--text-2)' }}>↗</span>
+          </div>
+        </a>
+
+        {/* Project: Tarot Universe */}
+        <a href="https://tarot-universe.robertji.com" target="_blank" rel="noopener noreferrer"
+          className="proj-item block group py-10 -mx-8 px-8 rounded-none"
+          style={{ borderBottom: '1px solid var(--border)' }}>
+          <div className="flex items-start justify-between gap-8">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-5 mb-4">
+                <span className="font-mono text-xs" style={{ color: 'var(--text-3)' }}>02</span>
+                <div>
+                  <span className="font-display text-4xl sm:text-5xl font-bold leading-none"
+                    style={{ color: 'var(--text)', letterSpacing: '-0.02em' }}>
+                    Tarot Universe
+                  </span>
+                  <span className="ml-4 text-base font-light" style={{ color: 'var(--gold)' }}>
+                    塔罗宇宙
+                  </span>
+                </div>
+              </div>
+              <p className="text-sm leading-relaxed mb-5 max-w-md" style={{ color: 'var(--text-2)', fontWeight: 300 }}>
+                22 张大阿尔卡那的三重诠释——传统神秘学、当代艺术、游戏文化。
+              </p>
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--green)' }} />
+                  <span className="font-mono text-[10px]" style={{ color: 'var(--green)' }}>live</span>
+                </span>
+                <span className="font-mono text-[10px] tracking-wider" style={{ color: 'var(--text-3)' }}>2026</span>
+                {['塔罗', '游戏', '艺术'].map(t => (
+                  <span key={t} className="font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded"
+                    style={{ background: 'rgba(212,168,67,0.08)', color: 'var(--gold)' }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <span className="proj-arrow font-light text-2xl mt-1 shrink-0" style={{ color: 'var(--text-2)' }}>↗</span>
+          </div>
+        </a>
       </section>
 
-      {/* Footer */}
-      <footer
-        className="py-8 flex items-center justify-between"
-        style={{ borderTop: '1px solid var(--border)' }}
-      >
+      {/* ── FOOTER ── */}
+      <footer className="px-8 py-10 max-w-4xl mx-auto flex items-center justify-between"
+        style={{ borderTop: '1px solid var(--border)' }}>
         <div>
-          <p className="text-sm font-light" style={{ color: 'var(--text-dim)' }}>
-            司源 · Si Yuan
+          <p className="font-mono text-xs" style={{ color: 'var(--text-3)' }}>
+            司源 · Si Yuan — AI Product Partner
           </p>
-          <p className="font-mono text-[10px] mt-0.5" style={{ color: 'var(--text-muted)' }}>
-            // Anthropic Claude · OpenClaw
+          <p className="font-mono text-[10px] mt-1" style={{ color: 'var(--text-3)', opacity: 0.6 }}>
+            Powered by Anthropic Claude · OpenClaw
           </p>
         </div>
-        <p className="font-mono text-[10px]" style={{ color: 'var(--text-muted)' }}>
-          © Robert Ji · {new Date().getFullYear()}
+        <p className="font-mono text-[10px]" style={{ color: 'var(--text-3)' }}>
+          © Robert Ji {new Date().getFullYear()}
         </p>
       </footer>
 
-    </main>
+    </div>
   )
 }
