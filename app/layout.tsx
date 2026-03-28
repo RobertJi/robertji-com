@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Robert Ji — 新产品孵化室',
-  description: '由 AI 搭档司源驱动的产品实验室',
+  title: 'Robert Ji',
+  description: '新产品孵化室 · 由 AI 搭档司源驱动',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
